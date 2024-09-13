@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    function ColorPicker() {
+        const [color, setColor] = React.useState("#000000")
+        const [message, setMessage] = React.useState("Selected color: #000000")
+
+        function handleInputChange(color) {
+            if (!checkValidHexCode(color)) {
+                setMessage("Please enter a valid hex code!");
+                return;
+            }
+
+            setColor(color);
+            setMessage(`Selected color: ${color}`);
+        }
+
+        return (
+            <>
+                <ColorBox color={color} />
+                <p>{
+                    message
+                }</p>
+                <label>Pick your color:</label>
+                <input type="text" name="color" id="" onChange={(e) => handleInputChange(e.target.value)} />
+            </>
+        );
+
+    }
+
+    function ColorBox({ color }) {
+        return <div style={{ width: "200px", height: "200px", backgroundColor: `${color}`, marginBottom: "20px" }}></div>
+    }
+
+    function checkValidHexCode(code) {
+        let c1 = code.length === 7;
+        let c2 = code[0] === '#';
+        return c1 && c2;
+    }
+
+
+    function App() {
+        return (
+            <>
+                <ColorPicker />
+            </>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />)
+</script>
+
+</html>

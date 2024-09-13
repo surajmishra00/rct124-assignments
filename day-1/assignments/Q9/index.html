@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #root {
+            margin: auto;
+            max-width: 1300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const MainDiv = () => (
+            <>
+                <img src="./newletter.png" width="160px" alt="Newletter" />
+                <h1 style={{ fontWeight: "800" }}>SUBSCRIBE</h1>
+                <p>Subscribe to our newsletter & stay up to date!</p>
+                <div className="email-box">
+                    <input type="email" name="email" id="" placeholder="john@doe.com" style={{ padding: "10px", borderRadius: "25px", border: "none", backgroundColor: "#EDF2F6", marginRight: "5px" }} />
+                    <button style={{ backgroundColor: "#4399E1", color: "white", border: "none", padding: "10px", fontWeight: "700", borderRadius: "25px" }}>SUBSCRIBE</button>
+                </div>
+            </>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<MainDiv />)
+
+    </script>
+</body>
+
+</html>

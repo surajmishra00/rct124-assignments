@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const Paragraph = () => (
+            <>
+                <p>React is a javascript library</p>
+            </>
+        );
+
+        const handleClick = () => alert('Hello');
+
+        const MainDiv = () => (
+            <>
+                <div clasName="main" style={{ backgroundColor: "blue", color: "white" }}>
+                    <p>Click the below button to alert 'Hello' </p>
+                    <button onClick={handleClick}>Alert Hello</button>
+                </div>
+            </>
+        );
+
+        const App = () => (
+            <>
+                <Paragraph />
+                <MainDiv />
+            </>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+
+
+    </script>
+</body>
+
+</html>

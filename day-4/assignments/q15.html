@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel">
+    const URL = 'https://fakestoreapi.com';
+    async function getData() {
+        const response = await axios.get(`${URL}/products`)
+        return response.data;
+    }
+
+    function ClothList() {
+        const [clothes, setClothes] = React.useState([]);
+
+        React.useEffect(() => {
+            getData().then(data => setClothes(data));
+        }, []);
+
+
+        return (
+            <ul style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+                {clothes.map((props) => <ClothItem {...props} key={props.id} />)}
+            </ul>
+        );
+    }
+
+    function ClothItem({ ...props }) {
+        return (
+            <li>
+                <h1>{props.title}</h1>
+                <img style={{ width: "250px" }} src={props.image} alt="" />
+                <p>{props.description}</p>
+                <p>{props.price}</p>
+            </li>
+        );
+    }
+    function App() {
+        return (
+            <>
+                <ClothList />
+            </>
+        );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />)
+
+</script>
+
+</html>
